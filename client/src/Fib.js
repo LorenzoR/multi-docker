@@ -25,24 +25,23 @@ class Fib extends Component {
     });
   }
 
-  handleSubmit = async (event) => {
+  handleSubmit = async event => {
     event.preventDefault();
 
     await axios.post('/api/values', {
       index: this.state.index
     });
-
     this.setState({ index: '' });
   };
 
   renderSeenIndexes() {
-    return this.state.seenIndexes.map(({number}) => number).join(', ');
+    return this.state.seenIndexes.map(({ number }) => number).join(', ');
   }
 
   renderValues() {
     const entries = [];
 
-    for ( let key in this.state.values ) {
+    for (let key in this.state.values) {
       entries.push(
         <div key={key}>
           For index {key} I calculated {this.state.values[key]}
@@ -68,9 +67,8 @@ class Fib extends Component {
         <h3>Indexes I have seen:</h3>
         {this.renderSeenIndexes()}
 
-        <h3>Calculated values:</h3>
+        <h3>Calculated Values:</h3>
         {this.renderValues()}
-
       </div>
     );
   }
